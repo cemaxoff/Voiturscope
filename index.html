@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voitur'scope – Recherche voitures d'occasion</title>
+<meta name="theme-color" content="#0f1b2d">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHJlY3Qgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4IiByeD0iMTEiIGZpbGw9IiNmZmM5MzMiLz48cGF0aCBkPSJNMzAgMzBsMTAgMTAiIHN0cm9rZT0iIzBmMWIyZCIgc3Ryb2tlLXdpZHRoPSI2LjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxjaXJjbGUgY3g9IjIxIiBjeT0iMjEiIHI9IjEzIiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9Ii42IiBzdHJva2U9IiMwZjFiMmQiIHN0cm9rZS13aWR0aD0iMy42Ii8+PHBhdGggZD0iTTEyIDI0LjV2LTNsMi41LTEgMy00aDdsMyA0IDIuNSAxdjN6IiBmaWxsPSIjMGYxYjJkIi8+PHBhdGggZD0iTTE4LjQgMTcuNmgyLjJ2Mi45aC0zLjd6TTIxLjkgMTcuNmgybDIgMi45aC00eiIgZmlsbD0iI2ZmYzkzMyIvPjxjaXJjbGUgY3g9IjE2LjUiIGN5PSIyNSIgcj0iMi43IiBmaWxsPSIjMGYxYjJkIi8+PGNpcmNsZSBjeD0iMTYuNSIgY3k9IjI1IiByPSIxIiBmaWxsPSIjZmZjOTMzIi8+PGNpcmNsZSBjeD0iMjUuNSIgY3k9IjI1IiByPSIyLjciIGZpbGw9IiMwZjFiMmQiLz48Y2lyY2xlIGN4PSIyNS41IiBjeT0iMjUiIHI9IjEiIGZpbGw9IiNmZmM5MzMiLz48L3N2Zz4=">
+<style>
+  :root{--bg:#f6f4ef;--card:#fff;--ink:#0f1b2d;--muted:#5d6878;--line:#e3dfd5;--navy:#0f1b2d;--yellow:#ffc933;--teal:#12b5a6;--field:#fff}
+  @media (prefers-color-scheme:dark){:root{--bg:#0b1320;--card:#14213a;--ink:#f3efe6;--muted:#9aa7bd;--line:#26365a;--field:#0f1b30}}
+  *{box-sizing:border-box}
+  body{font-family:"Avenir Next","Trebuchet MS",system-ui,sans-serif;margin:0;background:var(--bg);color:var(--ink)}
+  header{background:var(--navy);color:#fff;padding:18px 16px 0;position:relative}
+  .brand{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:12px}
+  .brand svg{width:46px;height:46px;flex:none}
+  .brand h1{margin:0;font-size:26px;letter-spacing:-.5px;font-weight:800}
+  .brand h1 span{color:var(--yellow)}
+  .brand p{margin:2px 0 0;font-size:13px;color:#b8c4d8}
+  .road{height:22px;margin-top:16px;background:#1a2a45;position:relative;overflow:hidden}
+  .road::after{content:"";position:absolute;left:0;right:0;top:9px;height:4px;background:repeating-linear-gradient(90deg,var(--yellow) 0 28px,transparent 28px 52px)}
+  main{max-width:900px;margin:0 auto;padding:16px 12px 30px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 2px 0 var(--line)}
+  h2{margin:0 0 12px;font-size:15px;text-transform:uppercase;letter-spacing:.8px;display:flex;align-items:center;gap:8px}
+  h2 i{font-style:normal;background:var(--yellow);color:var(--navy);width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:800}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  label{display:block;font-size:11px;font-weight:700;margin-bottom:4px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  input,select{width:100%;padding:11px;border:2px solid var(--line);border-radius:10px;font-size:15px;background:var(--field);color:var(--ink);font-family:inherit}
+  input:focus,select:focus{outline:none;border-color:var(--teal)}
+  .sites{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+  .site{display:flex;align-items:center;justify-content:center;gap:8px;padding:15px;border-radius:12px;color:#fff;text-decoration:none;font-weight:800;border-bottom:4px solid #0003;transition:transform .1s}
+  .site:active{transform:translateY(2px)}
+  .site::after{content:"\2192"}
+  .lbc{background:#f56b2a}.lac{background:#d6001c}.as{background:#0b5ed7}
+  .all{width:100%;padding:16px;margin-top:12px;border:0;border-bottom:4px solid #b88c00;border-radius:12px;background:var(--yellow);color:var(--navy);font-size:16px;font-weight:800;cursor:pointer;font-family:inherit}
+  .all:active{transform:translateY(2px)}
+  .note{font-size:12px;color:var(--muted);margin:10px 0 0;line-height:1.5}
+  .hist{padding-left:18px;margin:0}
+  .hist li{margin:6px 0;font-size:14px}
+  .hist a{color:var(--teal);font-weight:600}
+  footer{text-align:center;font-size:12px;color:var(--muted);padding-bottom:20px}
+  .fb{background:#1877f2}
+  .sites.small{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+  .mini{background:transparent;color:var(--ink);border:2px solid var(--line);border-bottom-width:4px;font-size:14px;padding:12px}
+  .recap{background:var(--bg);border:2px dashed var(--yellow);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-weight:700;font-size:14px}
+  .reset{width:100%;margin-top:14px;padding:12px;border:2px solid var(--line);border-bottom-width:4px;border-radius:10px;background:transparent;color:var(--ink);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
+  .reset:active{transform:translateY(2px)}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><svg viewBox="0 0 48 48" aria-label="Logo Voitur'scope" role="img"><rect width="48" height="48" rx="11" fill="#ffc933"/><path d="M30 30l10 10" stroke="#0f1b2d" stroke-width="6.5" stroke-linecap="round"/><circle cx="21" cy="21" r="13" fill="#fff" fill-opacity=".6" stroke="#0f1b2d" stroke-width="3.6"/><path d="M12 24.5v-3l2.5-1 3-4h7l3 4 2.5 1v3z" fill="#0f1b2d"/><path d="M18.4 17.6h2.2v2.9h-3.7zM21.9 17.6h2l2 2.9h-4z" fill="#ffc933"/><circle cx="16.5" cy="25" r="2.7" fill="#0f1b2d"/><circle cx="16.5" cy="25" r="1" fill="#ffc933"/><circle cx="25.5" cy="25" r="2.7" fill="#0f1b2d"/><circle cx="25.5" cy="25" r="1" fill="#ffc933"/></svg>
+    <div><h1>Voitur'<span>scope</span></h1><p>Toutes les annonces auto de France, une seule recherche.</p></div>
+  </div>
+  <div class="road"></div>
+</header>
+<main>
+  <div class="card">
+    <h2><i>1</i>Votre voiture</h2>
+    <div class="grid">
+      <div><label for="marque">Marque</label>
+        <select id="marque"><option value="">Toutes</option></select></div>
+      <div><label for="modele">Modèle (optionnel)</label>
+        <input id="modele" placeholder="ex : Clio, Golf, 208"></div>
+      <div><label for="lieu">Ville, code postal ou dépt</label>
+        <input id="lieu" placeholder="ex : Lyon, 69500 ou 69" autocomplete="off"></div>
+      <div><label for="rayon">Rayon autour</label>
+        <select id="rayon"><option value="">Aucun</option><option value="10">10 km</option><option value="25">25 km</option><option value="50" selected>50 km</option><option value="100">100 km</option><option value="200">200 km</option></select></div>
+      <div><label for="prix">Prix maximum (€)</label>
+        <input id="prix" type="number" inputmode="numeric" min="0" step="500" placeholder="ex : 10000"></div>
+      <div><label for="km">Kilométrage maximum</label>
+        <input id="km" type="number" inputmode="numeric" min="0" step="5000" placeholder="ex : 100000"></div>
+      <div><label for="annee">Année minimum</label>
+        <input id="annee" type="number" inputmode="numeric" min="1980" max="2030" placeholder="ex : 2015"></div>
+      <div><label for="carb">Carburant</label>
+        <select id="carb">
+          <option value="">Tous</option><option value="essence">Essence</option><option value="diesel">Diesel</option>
+          <option value="hybride">Hybride</option><option value="electrique">Électrique</option><option value="gpl">GPL</option>
+        </select></div>
+      <div><label for="boite">Boîte</label>
+        <select id="boite"><option value="">Toutes</option><option value="manuelle">Manuelle</option><option value="auto">Automatique</option></select></div>
+    </div>
+    <button class="reset" id="reset" type="button">↺ Réinitialiser les paramètres</button>
+  </div>
+
+  <div class="card">
+    <h2><i>2</i>Lancer la recherche</h2>
+    <div class="sites">
+      <a class="site lbc" id="lbc" target="_blank" rel="noopener">leboncoin</a>
+      <a class="site lac" id="lac" target="_blank" rel="noopener">La Centrale</a>
+      <a class="site as" id="as" target="_blank" rel="noopener">AutoScout24</a>
+      <a class="site fb" id="fb" target="_blank" rel="noopener">Facebook Marketplace</a>
+    </div>
+    <p class="note" id="locnote"></p>
+    <p class="note">Filtres pré-remplis sur ces sites. Si l'un d'eux n'est pas pris en compte, ajustez-le directement sur place. Facebook Marketplace demande d'être connecté et choisit le lieu selon votre compte.</p>
+  </div>
+
+  <div class="card">
+    <h2><i>3</i>Autres sites</h2>
+    <p class="note" style="margin:0 0 10px">Ces sites s'ouvrent sur leur page d'accueil : reportez-y votre recherche.</p>
+    <div class="recap" id="recap"></div>
+    <div class="sites small">
+      <a class="site mini" href="https://www.paruvendu.fr/auto-moto/" target="_blank" rel="noopener">ParuVendu</a>
+      <a class="site mini" href="https://www.aramisauto.com/" target="_blank" rel="noopener">Aramis Auto</a>
+      <a class="site mini" href="https://www.spoticar.fr/" target="_blank" rel="noopener">Spoticar</a>
+      <a class="site mini" href="https://www.autosphere.fr/" target="_blank" rel="noopener">Autosphere</a>
+      <a class="site mini" href="https://www.leparking.fr/" target="_blank" rel="noopener">LeParking</a>
+      <a class="site mini" href="https://www.ouestfrance-auto.com/" target="_blank" rel="noopener">Ouest-France Auto</a>
+      <a class="site mini" href="https://www.largus.fr/" target="_blank" rel="noopener">L'argus</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><i>↺</i>Dernières recherches</h2>
+    <ul class="hist" id="hist"></ul>
+  </div>
+</main>
+<footer>Voitur'scope · comparateur de recherches auto</footer>
+
+<script>
+const MARQUES=["Alfa Romeo","Audi","BMW","Citroën","Cupra","Dacia","DS","Fiat","Ford","Honda","Hyundai","Jeep","Kia","Land Rover","Lexus","Mazda","Mercedes-Benz","Mini","Mitsubishi","Nissan","Opel","Peugeot","Porsche","Renault","Seat","Skoda","Smart","Suzuki","Tesla","Toyota","Volkswagen","Volvo"];
+const $=id=>document.getElementById(id);
+MARQUES.forEach(m=>{const o=document.createElement("option");o.value=m;o.textContent=m;$("marque").appendChild(o)});
+
+const slug=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const enc=encodeURIComponent;
+
+function vals(){
+  return {marque:$("marque").value,modele:$("modele").value.trim(),prix:$("prix").value,km:$("km").value,
+          annee:$("annee").value,carb:$("carb").value,boite:$("boite").value,lieu:$("lieu").value.trim(),rayon:$("rayon").value};
+}
+
+function loc(v){
+  const t=(v.lieu||"").trim();
+  if(!t)return null;
+  if(/^\d{5}$/.test(t))return {type:"cp",v:t};
+  if(/^(\d{2,3}|2[ab])$/i.test(t))return {type:"dep",v:t.toUpperCase().padStart(2,"0")};
+  return {type:"ville",v:t};
+}
+
+function buildLbc(v){
+  const p=new URLSearchParams({category:"2"});
+  const t=(v.marque+" "+v.modele).trim();
+  if(t)p.set("text",t);
+  const l=loc(v);
+  if(l)p.set("locations",l.type==="dep"?"d_"+l.v:l.v);
+  if(v.prix)p.set("price","0-"+v.prix);
+  if(v.km)p.set("mileage","0-"+v.km);
+  if(v.annee)p.set("regdate",v.annee+"-max");
+  const f={essence:1,diesel:2,gpl:3,electrique:4,hybride:6}[v.carb];
+  if(f)p.set("fuel",f);
+  const g={manuelle:1,auto:2}[v.boite];
+  if(g)p.set("gearbox",g);
+  return "https://www.leboncoin.fr/recherche?"+p.toString();
+}
+
+function buildLac(v){
+  const p=new URLSearchParams();
+  if(v.marque){
+    let m=v.marque.toUpperCase();
+    if(v.modele)m+=":"+v.modele.toUpperCase();
+    p.set("makesModelsCommercialNames",m);
+  }else if(v.modele){p.set("q",v.modele)}
+  const l=loc(v);
+  if(l&&l.type==="cp"){p.set("zipCodes",l.v);if(v.rayon)p.set("distance",v.rayon)}
+  if(v.prix)p.set("priceMax",v.prix);
+  if(v.km)p.set("mileageMax",v.km);
+  if(v.annee)p.set("yearMin",v.annee);
+  const f={essence:"ess",diesel:"dies",hybride:"hyb",electrique:"elec",gpl:"gpl"}[v.carb];
+  if(f)p.set("energies",f);
+  const g={manuelle:"MANUAL",auto:"AUTO"}[v.boite];
+  if(g)p.set("gearbox",g);
+  return "https://www.lacentrale.fr/listing?"+p.toString();
+}
+
+function buildAs(v){
+  let path="https://www.autoscout24.fr/lst";
+  if(v.marque){path+="/"+slug(v.marque);if(v.modele)path+="/"+slug(v.modele)}
+  const p=new URLSearchParams({atype:"C",cy:"F",sort:"standard",desc:"0"});
+  const l=loc(v);
+  if(l&&l.type!=="dep"){p.set("zip",l.v);if(v.rayon)p.set("zipr",v.rayon)}
+  if(v.prix)p.set("priceto",v.prix);
+  if(v.km)p.set("kmto",v.km);
+  if(v.annee)p.set("fregfrom",v.annee);
+  const f={essence:"B",diesel:"D",electrique:"E",hybride:"2",gpl:"L"}[v.carb];
+  if(f)p.set("fuel",f);
+  const g={manuelle:"M",auto:"A"}[v.boite];
+  if(g)p.set("gear",g);
+  if(!v.marque&&v.modele)p.set("search_id","");
+  return path+"?"+p.toString();
+}
+
+function buildFb(v){
+  const p=new URLSearchParams();
+  const t=(v.marque+" "+v.modele).trim();
+  if(t)p.set("query",t);
+  if(v.prix)p.set("maxPrice",v.prix);
+  if(v.km)p.set("maxMileage",v.km);
+  if(v.annee)p.set("minYear",v.annee);
+  p.set("exact","false");
+  return "https://www.facebook.com/marketplace/category/cars?"+p.toString();
+}
+
+function refresh(){
+  const v=vals();
+  $("lbc").href=buildLbc(v);
+  $("lac").href=buildLac(v);
+  $("as").href=buildAs(v);
+  $("fb").href=buildFb(v);
+  $("recap").textContent="🔎 "+label(v);
+  const l=loc(v);let n="";
+  if(l){
+    const ok=["leboncoin"];
+    if(l.type==="cp")ok.push("La Centrale");
+    if(l.type!=="dep")ok.push("AutoScout24");
+    n="📍 Lieu appliqué sur : "+ok.join(", ")+".";
+    if(l.type==="dep")n+=" Un département n'est géré que par leboncoin : pour les autres, saisissez une ville ou un code postal.";
+    else if(l.type==="ville")n+=" La Centrale demande un code postal.";
+    if(l.type!=="dep"&&!v.rayon)n+=" (Sans rayon : ville seule.)";
+  }
+  $("locnote").textContent=n;
+  return v;
+}
+
+function label(v){
+  const parts=[(v.marque+" "+v.modele).trim()||"Toutes voitures"];
+  if(v.lieu)parts.push("📍 "+v.lieu+(v.rayon&&!/^\d{2,3}$/.test(v.lieu)?" ("+v.rayon+" km)":""));
+  if(v.prix)parts.push("≤ "+Number(v.prix).toLocaleString("fr-FR")+" €");
+  if(v.km)parts.push("≤ "+Number(v.km).toLocaleString("fr-FR")+" km");
+  if(v.annee)parts.push("≥ "+v.annee);
+  if(v.carb)parts.push(v.carb);
+  if(v.boite)parts.push(v.boite);
+  return parts.join(" · ");
+}
+
+function getHist(){try{return JSON.parse(localStorage.getItem("hist")||"[]")}catch(e){return []}}
+function saveHist(v){
+  try{
+    let h=getHist().filter(x=>label(x)!==label(v));
+    h.unshift(v);h=h.slice(0,8);
+    localStorage.setItem("hist",JSON.stringify(h));
+  }catch(e){}
+  renderHist();
+}
+function renderHist(){
+  const ul=$("hist");ul.innerHTML="";
+  const h=getHist();
+  if(!h.length){ul.innerHTML="<li>Aucune pour l'instant.</li>";return}
+  h.forEach(v=>{
+    const li=document.createElement("li");
+    const a=document.createElement("a");
+    a.href="#";a.textContent=label(v);
+    a.onclick=e=>{e.preventDefault();
+      $("marque").value=v.marque;$("modele").value=v.modele;$("prix").value=v.prix;$("km").value=v.km;
+      $("annee").value=v.annee;$("carb").value=v.carb;$("boite").value=v.boite;$("lieu").value=v.lieu||"";$("rayon").value=v.rayon||"";refresh();window.scrollTo(0,0)};
+    li.appendChild(a);ul.appendChild(li);
+  });
+}
+
+document.querySelectorAll("input,select").forEach(el=>{el.addEventListener("input",refresh);el.addEventListener("change",refresh)});
+document.querySelectorAll(".site").forEach(a=>a.addEventListener("click",()=>saveHist(refresh())));
+
+$("reset").addEventListener("click",()=>{
+  ["marque","modele","lieu","prix","km","annee","carb","boite"].forEach(id=>$(id).value="");
+  $("rayon").value="50";
+  refresh();
+});
+
+refresh();renderHist();
+</script>
+</body>
+</html>
